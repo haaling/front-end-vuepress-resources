@@ -9,7 +9,7 @@
     "build": "webpack --config webpack.prod.conf.js",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "npm run d": "bash deploy.sh"
+    "deploy": "bash deploy.sh"
   },
   "author": "hualu",
   "license": "ISC",
