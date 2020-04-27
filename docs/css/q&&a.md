@@ -9,4 +9,37 @@
 4. svg实现：因为svg的描边的1px是1物理像素。
 ```
 
-### 2. 
+### 2. 【进阶版本】0.5px border如何实现？
+```
+1. border-image[wip]
+
+2. 利用transform: scale(0.5)复杂一点。
+主要思想是：包一层div, 然后添加一个子元素, 设置border（与原需要border的元素平级, 原元素不设置border）。
+先用transform: scale(0.5)把另外添加的子元素缩小50%；border也会跟着缩小。再用top/right/bottom/left: -50%来使容器回到之前的大小。
+原元素不变。
+即：
+原来的html结构：
+<div class="main"></div>
+现在的：
+<div class="wrapper"> // 具体情况酌情处理
+ <div class="main"></div>
+ <div class="border"></div>
+</div>
+
+css: 
+
+.wrapper {
+ width: 200px;
+ height: 200px;
+ position: relative; // 给 border 定位
+}
+.border {
+ border: 1px solid #000;
+ transform: scale(0.5);
+ position: absolute;
+ left: -50%;
+ top: -50%;
+ right: -50%;
+ bottom: -50%;
+}
+
